@@ -4,10 +4,11 @@ import { Row, Col, Container } from "react-bootstrap";
 import AllUser from "./components/AllUser";
 import AddUserForm from "./components/AddUserForm";
 
-function App(props) {
+
+function App() {
   const [users, setUsers] = useState([
-    { name: "Nat", gen: 15, email: "nat@example.com", id: "usnlenjfa" },
-    { name: "Nora", gen: 41, email: "norae@gmail .com", id: "uesacshrbhfd" },
+    // { name: "Nat", gen: 15, email: "nat@example.com", id: "usnlenjfa" },
+    // { name: "Nora", gen: 41, email: "norae@gmail .com", id: "uesacshrbhfd" },
   ]);
   const addNewUser = (user) => {
     user.id = Math.random().toString();
@@ -17,11 +18,7 @@ function App(props) {
 
   const deleteUser = (id) => {
     setUsers(
-      users.filter((user) => {
-        if (user.id !== id) {
-          return user;
-        }
-      })
+      users.filter((user) => (user.id !== id))
     );
   };
   const EditUser = (id, newData) => {

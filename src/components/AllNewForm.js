@@ -1,18 +1,21 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 
+
 function AllNewForm(props) {
 	const [name, setName] = useState(props.userBio.name);
 	const [gen, setGen] = useState(props.userBio.gen);
 	const [email, setEmail] = useState(props.userBio.email);
+	const [id, setId] = useState(props.userBio.id)
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		props.editUser(props.userBio.id, { name, email, gen });
+		props.editUser(id, { name, email, gen });
 
 		setName("");
 		setGen("");
 		setEmail("");
+		setId("");
 	};
 	return (
 		<div>

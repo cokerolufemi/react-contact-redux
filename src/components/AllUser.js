@@ -2,14 +2,18 @@ import React from "react";
 import User from "./User";
 import { Row, Container } from "react-bootstrap";
 
+import { useSelector } from "react-redux";
 function AllUser(props) {
+  const { contacts } = useSelector((state) => {
+    return state;
+  });
   return (
     <Container>
       <Row>
-        {props.userData.map((item) => {
+        {contacts.map((item, index) => {
           return (
             <User
-              key={item.id}
+              key={index}
               userBio={item}
               delete={props.delete}
               editUser={props.editUser}

@@ -17,5 +17,16 @@ let initialState = {
     },
   ],
 };
-let contactReducer = (state= initialState,action)=>{};
+let contactReducer = (state = initialState, action) => {
+  console.log(action.payload);
+  switch (action.type) {
+    case "ADD_USER":
+      return {
+        ...state,
+        contacts: [...state.contacts, action.payload],
+      };
+    default:
+      return state;
+  }
+};
 export default contactReducer;
