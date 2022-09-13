@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
-import addUser from "../actions/userActions";
+import { addUser } from "../actions/userActions";
 import { connect } from "react-redux";
 
 function AddUserForm(props) {
@@ -10,7 +10,7 @@ function AddUserForm(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.addUser({ name, gen, email });
+    props.addUser({ name, gen, email, id: Math.floor(Math.random() * 2000) });
     setName("");
     setGen("");
     setEmail("");

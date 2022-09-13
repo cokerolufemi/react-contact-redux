@@ -1,10 +1,20 @@
-
-
-function addUser(newUser) {
+export function addUser(newUser) {
   return {
     type: "ADD_USER",
-    payload: "newUser"
-  }
+    payload: newUser,
+  };
 }
 
-export default addUser;
+export function deleteUser(id) {
+  return {
+    type: "DELETE_USER",
+    payload: id,
+  };
+}
+
+export function editUser(data, id) {
+  return {
+    type: "EDIT_USER",
+    payload: { data: data, id: id },
+  };
+}
