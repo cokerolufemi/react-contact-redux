@@ -2,15 +2,26 @@ import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { addUser } from "../actions/userActions";
 import { connect } from "react-redux";
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "../Firebase/configure";
+import { uuidv4 } from "@firebase/util";
 
 function AddUserForm(props) {
   const [name, setName] = useState("");
   const [gen, setGen] = useState("");
   const [email, setEmail] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    props.addUser({ name, gen, email, id: Math.floor(Math.random() * 2000) });
+    let contact = {
+      name,
+      gen,
+      email,
+      id: uuidv4(),
+    };
+    console.log(contact.id);
+    await setDoc(doc(db, "contact", contact.id), contact);
+    // props.addUser({ name, gen, email, id: Math.floor(Math.random() * 2000) });
     setName("");
     setGen("");
     setEmail("");
