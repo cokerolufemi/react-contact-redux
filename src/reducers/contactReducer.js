@@ -26,7 +26,7 @@ let contactReducer = (state = initialState, action) => {
     case "ADD_USER":
       return {
         ...state,
-        contacts: [...state.contacts, action.payload],
+        contacts: action.payload,
       };
 
     case "DELETE_USER":

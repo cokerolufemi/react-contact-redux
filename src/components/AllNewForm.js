@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
-import { connect, useDispatch } from "react-redux";
+// import { connect, useDispatch } from "react-redux";
 import { editUser } from "../actions/userActions";
+import { db } from "../Firebase/configure";
+import { doc, updateDoc } from "firebase/firestore";
+import { async } from "@firebase/util";
 
 function AllNewForm(props) {
   const [name, setName] = useState(props.userBio.name);
@@ -9,24 +12,24 @@ function AllNewForm(props) {
   const [email, setEmail] = useState(props.userBio.email);
   const [id, setId] = useState(props.userBio.id);
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // props.editUser(id, { name, email, gen });
-    const items = {
-      //   id: props.userBio.id,
-      name,
-      email,
-      gen,
-    };
-    dispatch(editUser(items, props.userBio.id));
+    try {
+      let userData = { id, name, email, gen };
+      const docRef = doc(db, "contact", props.userBio.id);
+      await updateDoc(docRef, userData);
+    } catch (error) {
+      console.log(error);
+    }
     setName("");
     setGen("");
     setEmail("");
     setId("");
     props.hide();
   };
+
   return (
     <div>
       <Form>

@@ -72,6 +72,7 @@ function AddUserForm(props) {
   );
 }
 
-const mapDispatchToProps = { addUser: addUser };
+// const mapDispatchToProps = { addUser: addUser };
 
-export default connect(null, mapDispatchToProps)(AddUserForm);
+// export default connect(null, mapDispatchToProps)(AddUserForm);
+export default AddUserForm;

@@ -2,20 +2,22 @@ import React from "react";
 import { Card, Col, Button, Modal } from "react-bootstrap";
 import AllNewForm from "./AllNewForm";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { deleteUser } from "../actions/userActions";
+// import { useDispatch } from "react-redux";
+// import { deleteUser } from "../actions/userActions";
+import { doc, deleteDoc } from "firebase/firestore";
+import { db } from "../Firebase/configure";
 
-function User(props) {
+function User({ userBio, updateUser }) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
-
   const handleShow = () => setShow(true);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  const hadleDelete = (e) => {
+  const hadleDelete = async (e) => {
     e.preventDefault();
     // props.delete(props.userBio.id);
-    dispatch(deleteUser(props.userBio.id));
+    // dispatch(deleteUser(props.userBio.id));
+    await deleteDoc(doc(db, "contact", userBio.id));
   };
   return (
     <>
@@ -24,18 +26,22 @@ function User(props) {
           <Modal.Title>Modal heading</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <AllNewForm userBio={props.userBio} hide={handleClose}/>
+          <AllNewForm
+            userBio={userBio}
+            updateUser={updateUser}
+            hide={handleClose}
+          />
         </Modal.Body>
       </Modal>
 
       <Col md={3} style={{ width: "12rem", marginBottom: "10px" }}>
         <Card>
           <Card.Body>
-            <Card.Title>Name:{props.userBio.name}</Card.Title>
+            <Card.Title>Name:{userBio.name}</Card.Title>
             <Card.Subtitle className="mb=2 text-muted">
-              Email:{props.userBio.email}
+              Email:{userBio.email}
             </Card.Subtitle>
-            <Card.Text>Gen:{props.userBio.gen}</Card.Text>
+            <Card.Text>Gen:{userBio.gen}</Card.Text>
             <Button href="#" size="sm" variant="primary" onClick={handleShow}>
               Edit
             </Button>
