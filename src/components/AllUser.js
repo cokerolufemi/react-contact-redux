@@ -5,7 +5,7 @@ import { Row, Container } from "react-bootstrap";
 import { useSelector } from "react-redux";
 function AllUser(props) {
   const { contacts } = useSelector((state) => {
-    return state;
+    return state.contactReducer;
   });
   return (
     <Container>

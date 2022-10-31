@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
-import { addUser } from "../actions/userActions";
-import { connect } from "react-redux";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../Firebase/configure";
 import { uuidv4 } from "@firebase/util";

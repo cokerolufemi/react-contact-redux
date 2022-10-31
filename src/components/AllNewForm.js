@@ -1,18 +1,13 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
-// import { connect, useDispatch } from "react-redux";
-import { editUser } from "../actions/userActions";
 import { db } from "../Firebase/configure";
 import { doc, updateDoc } from "firebase/firestore";
-import { async } from "@firebase/util";
 
 function AllNewForm(props) {
   const [name, setName] = useState(props.userBio.name);
   const [gen, setGen] = useState(props.userBio.gen);
   const [email, setEmail] = useState(props.userBio.email);
   const [id, setId] = useState(props.userBio.id);
-
-  // const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
